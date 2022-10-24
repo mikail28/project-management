@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout :: header"></head>
+<body>
+<nav th:replace="layout :: navbar"></nav>
+<div class="container">
+    <form action="/employees/save" th:object="${employee}" method="post" >
+        <input type="text" th:field="${employee.firstName}" placeholder="First name">
+        <input type="text" th:field="${employee.lastName}" placeholder="Last name">
+        <input type="text" th:field="${employee.age}" placeholder="Age">
+        <input type="email" th:field="${employee.email}" placeholder="Email">
+
+        <select th:field="*{cars}" multiple="multiple" class="form-select" aria-label="Default select example">
+            <option th:each="car:${AllCars}"
+                    th:value="${car.carId}"
+                    th:text="${car.model}"
+            ></option>
+        </select>
+
+        <button type="submit">Create Employee</button>
+    </form>
+</div>
+
+</body>
+</html>
